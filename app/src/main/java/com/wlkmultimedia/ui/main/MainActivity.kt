@@ -1,26 +1,26 @@
 package com.wlkmultimedia.ui.main
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.os.Build
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.*
-import androidx.annotation.RequiresApi
+import android.view.Gravity
+import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import com.google.android.material.tabs.TabLayout
 import com.mancj.materialsearchbar.MaterialSearchBar
 import com.wlkmultimedia.R
-import com.wlkmultimedia.SimpleFragmentPagerAdapter
+import com.wlkmultimedia.ui.main.tabsfragment.*
 import com.wlkmultimedia.utils.FontUtil.Companion.isValid
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBar.OnSearchActionListener  {
     override fun onButtonClicked(buttonCode: Int) {
         when (buttonCode) {
@@ -45,11 +45,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
 
     private lateinit var searchBar:MaterialSearchBar
     private lateinit var toolbar: Toolbar
-    internal var searchtollbar: Toolbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        loadFragment(Home())
         val currentLocale = Locale.getDefault().language
         isValid = if (currentLocale.toString() == "my") {
             setLocale("my")
@@ -64,29 +64,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
-        searchBar = findViewById(R.id.searchBar)
-        searchBar.setOnSearchActionListener(this)
-        searchBar.inflateMenu(R.menu.main)
-        searchBar.text = ""
-        searchBar.setCardViewElevation(10)
-        searchBar.addTextChangeListener(object :TextWatcher{
-            override fun afterTextChanged(p0: Editable?) {
 
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-        })
         toolbar = findViewById(R.id.toolbar)
         drawer_layout.addDrawerListener(t)
-        t.syncState()
-        //setSupportActionBar(toolbar)
+        //t.syncState()
+        setSupportActionBar(toolbar)
         nv.setNavigationItemSelectedListener { p0 ->
             when (p0.itemId) {
                 R.id.account -> {
@@ -102,25 +84,58 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
-        //imgToolbar?.setOnClickListener { drawer_layout.openDrawer(GravityCompat.START) }
+        tabs.addTab(tabs.newTab().setText("Home"))
+        tabs.addTab(tabs.newTab().setText("Korea"))
+        tabs.addTab(tabs.newTab().setText("Movies"))
+        tabs.addTab(tabs.newTab().setText("News"))
+        tabs.addTab(tabs.newTab().setText("TV"))
+        tabs.addTab(tabs.newTab().setText("Crime"))
+        tabs.addTab(tabs.newTab().setText("Drama"))
+        tabs.setOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
 
-        //setSearchtollbar()
-        val simpleFragmentPagerAdapter =
-            SimpleFragmentPagerAdapter(supportFragmentManager)
-        //val viewPager: ViewPager = findViewById(R.id.view_pager)
-        view_pager.adapter = simpleFragmentPagerAdapter
-        //val tabs: TabLayout = findViewById(R.id.tabs)
-        tabs.setupWithViewPager(view_pager)
-        for (i in 0 until tabs.tabCount) {
-            val tab = (tabs.getChildAt(0) as ViewGroup).getChildAt(i)
-            val p = tab.layoutParams as ViewGroup.MarginLayoutParams
-            p.setMargins(18, 0, 18, 0)
-            tab.requestLayout()
-        }
+            override fun onTabSelected(p0: TabLayout.Tab?) {
+                if (p0?.position==0){
+                    loadFragment(Home())
+                }else if(p0?.position==1){
+                    loadFragment(Korea())
+                }else if (p0?.position==2){
+                    loadFragment(Movies())
+                }else if (p0?.position==3){
+                    loadFragment(News())
+                }else if (p0?.position==4){
+                    loadFragment(TV())
+                }else if (p0?.position==5){
+                    loadFragment(Crime())
+                }else if (p0?.position==6){
+                    loadFragment(Drama())
+                }
+            }
+            override fun onTabReselected(p0: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabUnselected(p0: TabLayout.Tab?) {
+
+            }
+
+
+        })
 
 
     }
 
+    private fun loadFragment(fragment: Fragment?): Boolean {
+        //switching fragment
+        if (fragment != null) {
+            supportFragmentManager
+                .beginTransaction()
+                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                .replace(R.id.fragmentContainer, fragment)
+                .commit()
+            return true
+        }
+        return false
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main,menu)
         return true
@@ -140,49 +155,5 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
         Locale.setDefault(locale)
         config.setLocale(locale)
         baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    fun circleReveal(viewID: Int, posFromRight: Int, containsOverflow: Boolean, isShow: Boolean) {
-        val myView = findViewById<View>(viewID)
-
-        var width = myView.width
-
-        if (posFromRight > 0)
-            width -= posFromRight * resources.getDimensionPixelSize(R.dimen.abc_action_button_min_width_material) - resources.getDimensionPixelSize(
-                R.dimen.abc_action_button_min_width_material
-            ) / 2
-        if (containsOverflow)
-            width -= resources.getDimensionPixelSize(R.dimen.abc_action_button_min_width_overflow_material)
-
-        val cx = width
-        val cy = myView.height / 2
-
-        val anim: Animator
-        if (isShow)
-            anim = ViewAnimationUtils.createCircularReveal(myView, cx, cy, 0f, width.toFloat())
-        else
-            anim = ViewAnimationUtils.createCircularReveal(myView, cx, cy, width.toFloat(), 0f)
-
-        anim.duration = 220.toLong()
-
-        // make the view invisible when the animation is done
-        anim.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                if (!isShow) {
-                    super.onAnimationEnd(animation)
-                    myView.visibility = View.INVISIBLE
-                }
-            }
-        })
-
-        // make the view visible and start the animation
-        if (isShow)
-            myView.visibility = View.VISIBLE
-
-        // start the animation
-        anim.start()
-
-
     }
 }

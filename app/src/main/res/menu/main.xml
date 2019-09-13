@@ -6,6 +6,8 @@
         android:icon="@drawable/ic_action_action_search"
         android:orderInCategory="100"
         android:iconTint="@color/colorPrimaryDark"
+        app:showAsAction="always"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
         android:title="@string/abc_search_hint"
          />
 

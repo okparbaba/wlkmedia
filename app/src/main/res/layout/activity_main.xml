@@ -23,29 +23,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0">
-            <com.mancj.materialsearchbar.MaterialSearchBar
-                android:id="@+id/searchBar"
-                style="@style/MaterialSearchBarLight"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="8dp"
-                app:mt_navIconEnabled="true"
-                app:mt_placeholder="WLK" />
+
             <RelativeLayout android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-<!--                <ImageView android:layout_width="31dp"-->
-<!--                    android:id="@+id/imgToolbar"-->
-<!--                    android:tint="@android:color/darker_gray"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:src="@drawable/menuicon"-->
-<!--                    android:layout_height="wrap_content"/>-->
-<!--                <ImageView-->
-<!--                    android:id="@+id/imgLogo"-->
-<!--                    android:layout_width="45dp"-->
-<!--                    android:layout_marginLeft="10dp"-->
-<!--                    android:layout_toEndOf="@+id/imgToolbar"-->
-<!--                    android:src="@drawable/toolbaricon"-->
-<!--                    android:layout_height="wrap_content"/>-->
+                <ImageView android:layout_width="31dp"
+                    android:id="@+id/imgToolbar"
+                    android:tint="@android:color/darker_gray"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/menuicon"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/imgLogo"
+                    android:layout_width="45dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@+id/imgToolbar"
+                    android:src="@drawable/toolbaricon"
+                    android:layout_height="wrap_content"/>
 
 
 
@@ -67,31 +60,33 @@
                 android:id="@+id/tabs"
                 android:layout_marginTop="0dp"
                 app:tabBackground="@drawable/tab_color_selector"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 app:tabIndicatorHeight="1dp"
-                app:tabTextColor="@android:color/darker_gray"
+                app:tabTextColor="@android:color/black"
                 android:layout_height="wrap_content"
                 app:tabMode="scrollable"
+                app:tabGravity="fill"
                 app:tabSelectedTextColor="@color/colorPrimaryDark"
                 android:background="@color/colorTextPrimary">
             </com.google.android.material.tabs.TabLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.viewpager.widget.ViewPager
+        <FrameLayout
             android:layout_width="0dp"
-            android:layout_height="0dp" android:id="@+id/view_pager" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="0dp"
+            android:id="@+id/fragmentContainer"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-        </androidx.viewpager.widget.ViewPager>
+        </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:itemTextColor="@color/colorPrimaryDark"
-
         app:itemIconTint="@color/colorPrimaryDark"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
