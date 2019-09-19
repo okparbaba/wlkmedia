@@ -19,7 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep class com.specialallkarmyar.specialallkar.blogmodel.** { *; }
+-keep class com.wlkmultimedia.model.** { *; }
 -keep class com.specialallkarmyar.specialallkar.viewmodels.** { *; }
 -keepattributes *Annotation*, Signature, Exception
 -keep class * implements android.arch.lifecycle.GeneratedAdapter {<init>(...);}

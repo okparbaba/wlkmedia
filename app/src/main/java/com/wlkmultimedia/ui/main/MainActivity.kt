@@ -1,7 +1,9 @@
 package com.wlkmultimedia.ui.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Gravity
+import android.view.Gravity.START
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +48,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
     private lateinit var searchBar:MaterialSearchBar
     private lateinit var toolbar: Toolbar
 
+    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -65,6 +68,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
             R.string.navigation_drawer_close
         )
 
+        imgToolbar.setOnClickListener {
+            val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+            drawerLayout.openDrawer(START)
+        }
         toolbar = findViewById(R.id.toolbar)
         drawer_layout.addDrawerListener(t)
         //t.syncState()
