@@ -20,6 +20,8 @@ import com.wlkmultimedia.ui.main.feedadapter.DividerItemDecoration
 import com.wlkmultimedia.ui.main.feedadapter.MediaRecyclerAdapter
 import com.wlkmultimedia.ui.main.utils.ExoPlayerRecyclerView
 import com.wlkmultimedia.ui.main.utils.dump.photoSource
+import kotlinx.android.synthetic.main.feed_list_item.view.*
+import org.jetbrains.anko.support.v4.toast
 import java.util.*
 
 /**
@@ -47,7 +49,11 @@ class Feed : Fragment() {
 
         //set data object
         mRecyclerView!!.setMediaObjects(mediaObjectList)
-        mAdapter = MediaRecyclerAdapter(mediaObjectList, initGlide())
+        mAdapter = MediaRecyclerAdapter(mediaObjectList, initGlide()){
+            vh, pos ->
+            mRecyclerView!!.playVideo(true)
+            vh.itemView.ivPlay.animate().alpha(0f).setDuration(500)
+        }
 
         //Set Adapter
         mRecyclerView!!.adapter = mAdapter

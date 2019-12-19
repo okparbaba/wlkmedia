@@ -1,4 +1,4 @@
-package com.wlkmultimedia.ui.main.homeadapter
+package com.wlkmultimedia.ui.main.kidadapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.wlkmultimedia.R
 import com.wlkmultimedia.model.HomeSubModel
-import kotlinx.android.synthetic.main.home_sub_recycler_item.view.*
+import kotlinx.android.synthetic.main.kids_sub_recycler_item.view.*
 
-class HomeSubAdapter(val list:ArrayList<HomeSubModel>,val click:(vh:ViewHolder,pos:Int)->Unit):RecyclerView.Adapter<HomeSubAdapter.ViewHolder>() {
+class KidsSubAdapter(val list:ArrayList<HomeSubModel>, val click:(vh:ViewHolder, pos:Int)->Unit):RecyclerView.Adapter<KidsSubAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolder {
-        return  ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.home_sub_recycler_item,parent,false))
+        return  ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.kids_sub_recycler_item,parent,false))
     }
 
 

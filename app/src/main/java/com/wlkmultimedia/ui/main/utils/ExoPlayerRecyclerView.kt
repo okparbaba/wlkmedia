@@ -114,6 +114,8 @@ class ExoPlayerRecyclerView : RecyclerView {
 
                     // There's a special case when the end of the list has been reached.
                     // Need to handle that with this bit of logic
+                    //ဗွီဒီယိုကို ပိတ်ဖွင့် လုပ်တာ
+
                     if (!recyclerView.canScrollVertically(1)) {
                         playVideo(true)
                     } else {

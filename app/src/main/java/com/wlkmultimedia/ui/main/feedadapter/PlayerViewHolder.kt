@@ -24,7 +24,7 @@ class PlayerViewHolder(private val parent: View) : RecyclerView.ViewHolder(paren
     var mediaContainer: FrameLayout
     var mediaCoverImage: ImageView
     var volumeControl: ImageView
-    var progressBar: ProgressBar
+    var progressBar: com.github.ybq.android.spinkit.SpinKitView
     lateinit var requestManager: RequestManager
     private val title: TextView
     private val userHandle: TextView
