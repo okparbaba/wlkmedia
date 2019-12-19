@@ -1,4 +1,4 @@
-package com.wlkmultimedia.ui.main.kidadapter
+package com.wlkmultimedia.ui.main.adapters.kidadapter
 
 import android.view.LayoutInflater
 import android.view.View

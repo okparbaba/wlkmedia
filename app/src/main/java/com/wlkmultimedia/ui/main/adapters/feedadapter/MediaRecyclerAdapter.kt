@@ -1,4 +1,4 @@
-package com.wlkmultimedia.ui.main.feedadapter
+package com.wlkmultimedia.ui.main.adapters.feedadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

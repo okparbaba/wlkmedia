@@ -1,4 +1,4 @@
-package com.wlkmultimedia.ui.main.homeadapter
+package com.wlkmultimedia.ui.main.adapters.homeadapter
 
 import android.view.LayoutInflater
 import android.view.View

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.wlkmultimedia.R
 import com.wlkmultimedia.model.HomeModel
 import com.wlkmultimedia.model.HomeSubModel
-import com.wlkmultimedia.ui.main.kidadapter.KidsRecyclerAdpter
+import com.wlkmultimedia.ui.main.adapters.kidadapter.KidsRecyclerAdpter
 import kotlinx.android.synthetic.main.fragment_kids.*
 
 /**

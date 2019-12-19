@@ -2,23 +2,17 @@ package com.wlkmultimedia.ui.main.tabsfragment
 
 
 import android.os.Bundle
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.wlkmultimedia.model.HomeSubModel
 
 import com.wlkmultimedia.R
 import com.wlkmultimedia.model.HomeModel
-import com.wlkmultimedia.ui.main.homeadapter.HomeRecyclerAdpter
-import com.wlkmultimedia.ui.main.homeadapter.HomeSubAdapter
+import com.wlkmultimedia.ui.main.adapters.homeadapter.HomeRecyclerAdpter
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**

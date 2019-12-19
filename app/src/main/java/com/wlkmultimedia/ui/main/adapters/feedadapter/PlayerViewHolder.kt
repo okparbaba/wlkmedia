@@ -1,9 +1,8 @@
-package com.wlkmultimedia.ui.main.feedadapter
+package com.wlkmultimedia.ui.main.adapters.feedadapter
 
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.androidwave.exoplayer.model.MediaObject

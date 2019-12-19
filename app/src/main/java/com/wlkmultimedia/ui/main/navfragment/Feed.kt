@@ -16,12 +16,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.RequestOptions
 import com.wlkmultimedia.R
-import com.wlkmultimedia.ui.main.feedadapter.DividerItemDecoration
-import com.wlkmultimedia.ui.main.feedadapter.MediaRecyclerAdapter
+import com.wlkmultimedia.ui.main.adapters.feedadapter.DividerItemDecoration
+import com.wlkmultimedia.ui.main.adapters.feedadapter.MediaRecyclerAdapter
 import com.wlkmultimedia.ui.main.utils.ExoPlayerRecyclerView
 import com.wlkmultimedia.ui.main.utils.dump.photoSource
 import kotlinx.android.synthetic.main.feed_list_item.view.*
-import org.jetbrains.anko.support.v4.toast
 import java.util.*
 
 /**

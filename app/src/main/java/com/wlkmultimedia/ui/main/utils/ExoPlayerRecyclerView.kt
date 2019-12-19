@@ -34,7 +34,7 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.wlkmultimedia.R
-import com.wlkmultimedia.ui.main.feedadapter.PlayerViewHolder
+import com.wlkmultimedia.ui.main.adapters.feedadapter.PlayerViewHolder
 import java.util.ArrayList
 import java.util.Objects
 

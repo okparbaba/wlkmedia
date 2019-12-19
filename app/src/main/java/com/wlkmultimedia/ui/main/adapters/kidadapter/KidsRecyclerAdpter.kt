@@ -1,5 +1,4 @@
-package com.wlkmultimedia.ui.main.homeadapter
-
+package com.wlkmultimedia.ui.main.adapters.kidadapter
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wlkmultimedia.R
 import com.wlkmultimedia.model.HomeModel
 import com.wlkmultimedia.model.HomeSubModel
-import kotlinx.android.synthetic.main.home_recycler_item.view.*
+import kotlinx.android.synthetic.main.kids_recycler_item.view.*
 import org.jetbrains.anko.textColor
 
-class HomeRecyclerAdpter(
+class KidsRecyclerAdpter(
     val list: ArrayList<HomeModel>, val onClickListener: (vh: ViewHolder, pos: Int) -> Unit
-) : RecyclerView.Adapter<HomeRecyclerAdpter.ViewHolder>() {
+) : RecyclerView.Adapter<KidsRecyclerAdpter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.home_recycler_item,parent,false))
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.kids_recycler_item,parent,false))
     }
 
     override fun getItemCount()=list.size
@@ -30,7 +29,7 @@ class HomeRecyclerAdpter(
             val lm = LinearLayoutManager(holder.childRv.context)
             lm.orientation = RecyclerView.HORIZONTAL
             layoutManager = lm
-            adapter = HomeSubAdapter(list[position].childList as ArrayList<HomeSubModel>){
+            adapter = KidsSubAdapter(list[position].childList as ArrayList<HomeSubModel>){
                 vh, pos ->
             }
             isNestedScrollingEnabled = false
