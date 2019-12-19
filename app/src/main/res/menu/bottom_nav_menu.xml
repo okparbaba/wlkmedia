@@ -2,21 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_recents"
+        android:id="@+id/action_home"
         android:enabled="true"
-        android:icon="@android:drawable/ic_media_play"
-        android:title="Recents"
+        android:icon="@drawable/home"
+        android:title="Home"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_favorites"
+        android:id="@+id/action_feed"
         android:enabled="true"
-        android:icon="@android:drawable/btn_radio"
-        android:title="Favorites"
+        android:icon="@drawable/feed"
+        android:title="Feed"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_nearby"
+        android:id="@+id/action_live"
         android:enabled="true"
-        android:icon="@android:drawable/gallery_thumb"
-        android:title="Nearby"
+        android:icon="@drawable/live"
+        android:title="Live"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_kids"
+        android:enabled="true"
+        android:icon="@drawable/kids"
+        android:title="Kids"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_download"
+        android:enabled="true"
+        android:icon="@drawable/download"
+        android:title="Downloads"
         app:showAsAction="ifRoom" />
 </menu>

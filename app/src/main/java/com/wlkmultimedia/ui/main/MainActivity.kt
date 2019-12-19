@@ -13,9 +13,14 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.mancj.materialsearchbar.MaterialSearchBar
 import com.wlkmultimedia.R
+import com.wlkmultimedia.ui.main.navfragment.Download
+import com.wlkmultimedia.ui.main.navfragment.Feed
+import com.wlkmultimedia.ui.main.navfragment.Kids
+import com.wlkmultimedia.ui.main.navfragment.Live
 import com.wlkmultimedia.ui.main.tabsfragment.*
 import com.wlkmultimedia.utils.FontUtil.Companion.isValid
 import kotlinx.android.synthetic.main.activity_main.*
@@ -53,14 +58,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         loadFragment(Home())
-        val currentLocale = Locale.getDefault().language
-        isValid = if (currentLocale.toString() == "my") {
-            setLocale("my")
-            true
-        } else {
-            setLocale("zy")
-            false
-        }
+
         val t = ActionBarDrawerToggle(
             this,
             drawer_layout,
@@ -127,8 +125,34 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
 
 
         })
+        bottom_navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
 
+    }
+    private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.action_home -> {
+
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.action_feed -> {
+                loadNavFragment(Feed())
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.action_live -> {
+                loadNavFragment(Live())
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.action_kids -> {
+                loadNavFragment(Kids())
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.action_download -> {
+                loadNavFragment(Download())
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        false
     }
 
     private fun loadFragment(fragment: Fragment?): Boolean {
@@ -143,6 +167,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
         }
         return false
     }
+
+    private fun loadNavFragment(fragment: Fragment?): Boolean {
+        //switching fragment
+        if (fragment != null) {
+            supportFragmentManager
+                .beginTransaction()
+                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                .addToBackStack("tag of fragment")
+                .add(R.id.navFraContainer, fragment)
+                .commit()
+            return true
+        }
+        return false
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main,menu)
         return true
@@ -152,8 +190,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            if (supportFragmentManager.backStackEntryCount>0){
+                supportFragmentManager.popBackStackImmediate()
+            }else super.onBackPressed()
         }
+
     }
 
     private fun setLocale(lang: String) {
