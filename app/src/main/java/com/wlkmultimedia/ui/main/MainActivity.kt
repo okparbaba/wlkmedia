@@ -17,10 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.mancj.materialsearchbar.MaterialSearchBar
 import com.wlkmultimedia.R
-import com.wlkmultimedia.ui.main.navfragment.Download
-import com.wlkmultimedia.ui.main.navfragment.Feed
-import com.wlkmultimedia.ui.main.navfragment.Kids
-import com.wlkmultimedia.ui.main.navfragment.Live
+import com.wlkmultimedia.ui.main.navfragment.*
 import com.wlkmultimedia.ui.main.tabsfragment.*
 import com.wlkmultimedia.utils.FontUtil.Companion.isValid
 import kotlinx.android.synthetic.main.activity_main.*
@@ -57,23 +54,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        loadFragment(Home())
-
-        val t = ActionBarDrawerToggle(
-            this,
-            drawer_layout,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
-        )
-
-        imgToolbar.setOnClickListener {
-            val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-            drawerLayout.openDrawer(START)
-        }
-        toolbar = findViewById(R.id.toolbar)
-        drawer_layout.addDrawerListener(t)
-        //t.syncState()
-        setSupportActionBar(toolbar)
+        loadNavFragment(NavHome())
         nv.setNavigationItemSelectedListener { p0 ->
             when (p0.itemId) {
                 R.id.account -> {
@@ -89,42 +70,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
-        tabs.addTab(tabs.newTab().setText("Home"))
-        tabs.addTab(tabs.newTab().setText("Korea"))
-        tabs.addTab(tabs.newTab().setText("Movies"))
-        tabs.addTab(tabs.newTab().setText("News"))
-        tabs.addTab(tabs.newTab().setText("TV"))
-        tabs.addTab(tabs.newTab().setText("Crime"))
-        tabs.addTab(tabs.newTab().setText("Drama"))
-        tabs.setOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
+        val t = ActionBarDrawerToggle(
+            this,
+            drawer_layout,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
 
-            override fun onTabSelected(p0: TabLayout.Tab?) {
-                if (p0?.position==0){
-                    loadFragment(Home())
-                }else if(p0?.position==1){
-                    loadFragment(Korea())
-                }else if (p0?.position==2){
-                    loadFragment(Movies())
-                }else if (p0?.position==3){
-                    loadFragment(News())
-                }else if (p0?.position==4){
-                    loadFragment(TV())
-                }else if (p0?.position==5){
-                    loadFragment(Crime())
-                }else if (p0?.position==6){
-                    loadFragment(Drama())
-                }
-            }
-            override fun onTabReselected(p0: TabLayout.Tab?) {
+        imgToolbar.setOnClickListener {
+            val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+            drawerLayout.openDrawer(START)
+        }
+        toolbar = findViewById(R.id.toolbar)
+        drawer_layout.addDrawerListener(t)
+        //t.syncState()
+        setSupportActionBar(toolbar)
 
-            }
-
-            override fun onTabUnselected(p0: TabLayout.Tab?) {
-
-            }
-
-
-        })
         bottom_navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
 
@@ -132,7 +93,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.action_home -> {
-
+                loadNavFragment(NavHome())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.action_feed -> {
@@ -155,18 +116,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
         false
     }
 
-    private fun loadFragment(fragment: Fragment?): Boolean {
-        //switching fragment
-        if (fragment != null) {
-            supportFragmentManager
-                .beginTransaction()
-                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                .replace(R.id.fragmentContainer, fragment)
-                .commit()
-            return true
-        }
-        return false
-    }
+
 
     private fun loadNavFragment(fragment: Fragment?): Boolean {
         //switching fragment
@@ -175,7 +125,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
                 .beginTransaction()
                 .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
                 .addToBackStack("tag of fragment")
-                .add(R.id.navFraContainer, fragment)
+                .replace(R.id.navFraContainer, fragment)
                 .commit()
             return true
         }
@@ -197,11 +147,4 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, MaterialSearchBa
 
     }
 
-    private fun setLocale(lang: String) {
-        val locale = Locale(lang)
-        val config = baseContext.resources.configuration
-        Locale.setDefault(locale)
-        config.setLocale(locale)
-        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-    }
 }
