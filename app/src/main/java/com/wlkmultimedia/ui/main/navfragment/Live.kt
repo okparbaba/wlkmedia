@@ -28,7 +28,7 @@ class Live : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadFragment(Home())
+        loadFragment(All())
         tabs.addTab(tabs.newTab().setText("ALL"))
         tabs.addTab(tabs.newTab().setText("NEWS"))
         tabs.addTab(tabs.newTab().setText("SPORTS"))

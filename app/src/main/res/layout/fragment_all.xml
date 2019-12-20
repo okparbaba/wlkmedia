@@ -13,6 +13,7 @@
 
         <TextView
             android:id="@+id/textView3"
+            android:textColor="@android:color/black"
             android:layout_width="match_parent"
             android:padding="10dp"
             android:textStyle="bold"
@@ -23,6 +24,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvLiveAll"
             android:layout_width="match_parent"
+            android:layoutAnimation="@anim/layout_animation_from_bottom"
             tools:listitem="@layout/all_live_item"
             android:layout_height="match_parent" />
     </LinearLayout>

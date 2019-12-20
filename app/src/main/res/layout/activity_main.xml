@@ -32,7 +32,7 @@
                     android:layout_width="31dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/menuicon"
+                    android:src="@drawable/menu"
                     android:tint="@android:color/darker_gray" />
 
                 <ImageView

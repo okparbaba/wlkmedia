@@ -22,7 +22,9 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="16dp"
         android:text="MyZen TV"
+        android:textSize="15sp"
         android:textStyle="bold"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/ivPhoto"
         app:layout_constraintStart_toEndOf="@+id/ivPhoto"
         app:layout_constraintTop_toTopOf="@+id/ivPhoto" />

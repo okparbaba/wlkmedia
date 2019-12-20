@@ -38,7 +38,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <ImageView
-                            android:src="@drawable/car1"
+                            android:src="@drawable/kids3"
                             android:scaleType="fitXY"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -58,7 +58,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <ImageView
-                            android:src="@drawable/hollowen"
+                            android:src="@drawable/kids2"
                             android:scaleType="fitXY"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
@@ -77,7 +77,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <ImageView
-                            android:src="@drawable/car3"
+                            android:src="@drawable/kids1"
                             android:scaleType="fitXY"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>

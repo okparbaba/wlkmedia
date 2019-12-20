@@ -5,10 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.livefragment.LiveNews">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/textView3"
+            android:textColor="@android:color/black"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:background="#E9E9E9"
+            android:layout_height="wrap_content"
+            android:text="CHANNELS" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLiveNews"
+            android:layoutAnimation="@anim/layout_animation_from_bottom"
+            android:layout_width="match_parent"
+            tools:listitem="@layout/all_live_item"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </FrameLayout>
