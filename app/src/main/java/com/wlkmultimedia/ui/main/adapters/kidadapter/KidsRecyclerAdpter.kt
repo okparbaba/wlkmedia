@@ -1,4 +1,5 @@
 package com.wlkmultimedia.ui.main.adapters.kidadapter
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wlkmultimedia.R
 import com.wlkmultimedia.model.HomeModel
 import com.wlkmultimedia.model.HomeSubModel
+import com.wlkmultimedia.ui.main.VideoPlayActivity
 import kotlinx.android.synthetic.main.kids_recycler_item.view.*
 import org.jetbrains.anko.textColor
 
@@ -31,6 +33,9 @@ class KidsRecyclerAdpter(
             layoutManager = lm
             adapter = KidsSubAdapter(list[position].childList as ArrayList<HomeSubModel>){
                 vh, pos ->
+                holder.itemView.context?.let {
+                    it.startActivity(Intent(it, VideoPlayActivity::class.java))
+                }
             }
             isNestedScrollingEnabled = false
         }

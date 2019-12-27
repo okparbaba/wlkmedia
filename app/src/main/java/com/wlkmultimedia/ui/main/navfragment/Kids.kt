@@ -1,17 +1,18 @@
 package com.wlkmultimedia.ui.main.navfragment
 
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.NestedScrollView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.wlkmultimedia.R
 import com.wlkmultimedia.model.HomeModel
 import com.wlkmultimedia.model.HomeSubModel
+import com.wlkmultimedia.ui.main.VideoPlayActivity
 import com.wlkmultimedia.ui.main.adapters.kidadapter.KidsRecyclerAdpter
 import kotlinx.android.synthetic.main.fragment_kids.*
 
@@ -27,10 +28,11 @@ class Kids : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_kids, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewFlipper.setInAnimation(activity,android.R.anim.slide_in_left)
-        viewFlipper.setOutAnimation(activity,android.R.anim.slide_out_right)
+        viewFlipper.setInAnimation(activity, android.R.anim.slide_in_left)
+        viewFlipper.setOutAnimation(activity, android.R.anim.slide_out_right)
         viewFlipper.startFlipping()
 //        if (viewFlipper != null) {
 //            for (image in imageList) {
@@ -46,9 +48,8 @@ class Kids : Fragment() {
 //        }
 
         val lm = LinearLayoutManager(activity)
-        rvHome.layoutManager =lm
-        val homeRecyclerAdpter = KidsRecyclerAdpter(generateHomeList()){
-                vh, pos ->
+        rvHome.layoutManager = lm
+        val homeRecyclerAdpter = KidsRecyclerAdpter(generateHomeList()) { vh, pos ->
         }
         rvHome.adapter = homeRecyclerAdpter
         rvHome.isNestedScrollingEnabled = false
@@ -59,26 +60,52 @@ class Kids : Fragment() {
                 ibFlipOne.animate().alpha(1f).setDuration(100).start()
             }
         })
+
+        ibFlipOne.setOnClickListener {
+            startActivity(
+                Intent(
+                    activity,
+                    VideoPlayActivity::class.java
+                )
+            )
+        }
+        ibFlipTwo.setOnClickListener {
+            startActivity(
+                Intent(
+                    activity,
+                    VideoPlayActivity::class.java
+                )
+            )
+        }
+        ibFlipThree.setOnClickListener {
+            startActivity(
+                Intent(
+                    activity,
+                    VideoPlayActivity::class.java
+                )
+            )
+        }
+
     }
 
-    private fun generateHomeList():ArrayList<HomeModel>{
+    private fun generateHomeList(): ArrayList<HomeModel> {
         val list = ArrayList<HomeModel>()
-        val one = HomeModel("Continue Watching",generateSubList())
+        val one = HomeModel("Continue Watching", generateSubList())
         list.add(one)
 
-        val two = HomeModel("Cartoon Movie",generateSubList2())
+        val two = HomeModel("Cartoon Movie", generateSubList2())
         list.add(two)
 
-        val three = HomeModel("Advenger",generateSubList())
+        val three = HomeModel("Advenger", generateSubList())
         list.add(three)
 
-        val four = HomeModel("Child Play",generateSubList2())
+        val four = HomeModel("Child Play", generateSubList2())
         list.add(four)
 
         return list
     }
 
-    private fun generateSubList2():ArrayList<HomeSubModel>{
+    private fun generateSubList2(): ArrayList<HomeSubModel> {
         val list = ArrayList<HomeSubModel>()
         val one = HomeSubModel(
             "Dory",
@@ -125,7 +152,8 @@ class Kids : Fragment() {
 
         return list
     }
-    private fun generateSubList():ArrayList<HomeSubModel>{
+
+    private fun generateSubList(): ArrayList<HomeSubModel> {
         val list = ArrayList<HomeSubModel>()
         val one = HomeSubModel(
             "Captain Marvel",

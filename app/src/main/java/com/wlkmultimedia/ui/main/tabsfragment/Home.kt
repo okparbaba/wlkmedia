@@ -64,6 +64,8 @@ class Home : Fragment() {
             }
         })
         ibFlipOne.setOnClickListener { startActivity(Intent(activity,VideoPlayActivity::class.java)) }
+        ibFlipTwo.setOnClickListener { startActivity(Intent(activity,VideoPlayActivity::class.java)) }
+        ibFlipThree.setOnClickListener { startActivity(Intent(activity,VideoPlayActivity::class.java)) }
     }
 
     private fun generateHomeList():ArrayList<HomeModel>{

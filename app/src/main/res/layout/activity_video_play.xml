@@ -4,9 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.main.VideoPlayActivity">
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/player_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:resize_mode="fit"
+        app:controller_layout_id="@layout/exo_player_control_view"
+        app:show_buffering="when_playing"
+        app:show_shuffle_button="true" />
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
@@ -14,26 +27,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.google.android.exoplayer2.ui.PlayerView
-                android:id="@+id/player_view"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:resize_mode="fit"
-                app:controller_layout_id="@layout/exo_player_control_view"
-                app:show_buffering="when_playing"
-                app:show_shuffle_button="true" />
+
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/ivPoster"
                 android:layout_width="59dp"
                 android:layout_height="89dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/player_view"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/car1" />
 
             <TextView
@@ -46,8 +48,8 @@
                 android:textColor="#363636"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="@+id/imageView3" />
+                app:layout_constraintStart_toEndOf="@+id/ivPoster"
+                app:layout_constraintTop_toTopOf="@+id/ivPoster" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -76,7 +78,7 @@
                 android:layout_marginTop="24dp"
                 android:tint="#777777"
                 app:layout_constraintStart_toStartOf="@+id/tvProducerName"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/ivPoster"
                 app:srcCompat="@drawable/ic_menu_share" />
 
             <TextView
@@ -164,6 +166,19 @@
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="@+id/tvDescription"
                 app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRelated"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="60dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView12"
+                app:layout_constraintTop_toBottomOf="@+id/textView12"
+                tools:listitem="@layout/player_view_related_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

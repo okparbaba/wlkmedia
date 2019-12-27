@@ -20,4 +20,6 @@
     <color name="grapefruit">#ff6363</color>
     <color name="black_63">#a1000000</color>
     <color name="windows_blue">#3495af</color>
+    <color name="grey">#D8D8D8</color>
+    <color name="blue">#039BE5</color>
 </resources>
