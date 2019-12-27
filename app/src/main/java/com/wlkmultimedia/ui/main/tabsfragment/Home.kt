@@ -1,6 +1,7 @@
 package com.wlkmultimedia.ui.main.tabsfragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import com.wlkmultimedia.model.HomeSubModel
 
 import com.wlkmultimedia.R
 import com.wlkmultimedia.model.HomeModel
+import com.wlkmultimedia.ui.main.VideoPlayActivity
 import com.wlkmultimedia.ui.main.adapters.homeadapter.HomeRecyclerAdpter
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -20,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
  */
 class Home : Fragment() {
     private var imageList = intArrayOf(R.drawable.nay1, R.drawable.nay2, R.drawable.nay3, R.drawable.nay4)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,6 +63,7 @@ class Home : Fragment() {
                 ibFlipOne.animate().alpha(1f).setDuration(100).start()
             }
         })
+        ibFlipOne.setOnClickListener { startActivity(Intent(activity,VideoPlayActivity::class.java)) }
     }
 
     private fun generateHomeList():ArrayList<HomeModel>{

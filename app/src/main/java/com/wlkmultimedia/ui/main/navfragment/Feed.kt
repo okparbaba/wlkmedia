@@ -62,6 +62,11 @@ class Feed : Fragment() {
             firstTime = false
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mRecyclerView?.playVideo(false)
+    }
     private fun initView() {
         mRecyclerView = view!!.findViewById(R.id.exoPlayerRecyclerView)
         mRecyclerView!!.layoutManager = LinearLayoutManager(activity)
